@@ -21,6 +21,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", router());
 
+app.all("/", (req, res) => {
+  return res.status(200).json({messsage: "API is up and running"})
+})
+app.all("*", (req, res) => {
+  return res.status(200).json({messsage: "Route doesn't exist"})
+})
+
 app.listen(port, () => {
   console.log(
     new Date().toDateString(),
